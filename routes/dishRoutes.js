@@ -72,6 +72,30 @@ routes.post("/dishes", save);
  */
 routes.delete("/dishes/:id", erase);
 
+/**
+ * @swagger
+ * /dishes/{id}:
+ *   put:
+ *     summary: Update a dish by ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The dish ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Dish'
+ *     responses:
+ *       200:
+ *         description: Updated dish
+ *       404:
+ *         description: Dish not found
+ */
 routes.put("/dishes/:id", update);
 
 module.exports = routes;
