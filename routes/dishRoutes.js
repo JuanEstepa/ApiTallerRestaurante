@@ -84,12 +84,7 @@ routes.delete("/dishes/:id", erase);
  *         schema:
  *           type: string
  *         description: The dish ID
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Dish'
+ *
  *     responses:
  *       200:
  *         description: Updated dish
