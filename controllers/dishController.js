@@ -1,6 +1,16 @@
 const Dish = require("../models/dishModel");
 
 module.exports = {
+   /**
+   * Start endpoint
+   * @route GET /start
+   * @desc Sends a connection confirmation message.
+   * @access Public
+   * @param {Object} req - Express request object.
+   * @param {Object} res - Express response object.
+   * @returns {Object} 200 - Connected successfully message.
+   * @returns {Object} 500 - Error message.
+   */
   start: async (req, res) => {
     try {
       return res
@@ -10,6 +20,17 @@ module.exports = {
       return res.status(500).json({ err: err });
     }
   },
+
+  /**
+   * Find all dishes
+   * @route GET /dishes
+   * @desc Retrieves all dishes from the database.
+   * @access Public
+   * @param {Object} req - Express request object.
+   * @param {Object} res - Express response object.
+   * @returns {Object} 200 - Array of dish objects.
+   * @returns {Object} 500 - Error message.
+   */
   findAll: async (req, res) => {
     try {
       const result = await Dish.find({});
@@ -19,6 +40,16 @@ module.exports = {
       return res.status(500).json({ err: err });
     }
   },
+  /**
+   * Save a new dish
+   * @route POST /dishes
+   * @desc Saves a new dish to the database.
+   * @access Public
+   * @param {Object} req - Express request object.
+   * @param {Object} res - Express response object.
+   * @returns {Object} 201 - The created dish object.
+   * @returns {Object} 500 - Error message.
+   */
   save: async (req, res) => {
     try {
       const dish = new Dish(req.body);
@@ -29,6 +60,16 @@ module.exports = {
       return res.status(500).json({ err: err });
     }
   },
+   /**
+   * Find dish by ID
+   * @route GET /dishes/:id
+   * @desc Retrieves a dish by its ID from the database.
+   * @access Public
+   * @param {Object} req - Express request object.
+   * @param {Object} res - Express response object.
+   * @returns {Object} 200 - The dish object.
+   * @returns {Object} 500 - Error message.
+   */
   findById: async (req, res) => {
     try {
       const { id } = req.params;
@@ -39,6 +80,17 @@ module.exports = {
       return res.status(500).json({ error: err });
     }
   },
+   /**
+   * Delete dish by ID
+   * @route DELETE /dishes/:id
+   * @desc Deletes a dish by its ID from the database.
+   * @access Public
+   * @param {Object} req - Express request object.
+   * @param {Object} res - Express response object.
+   * @returns {Object} 200 - Success message.
+   * @returns {Object} 404 - Object ID not found message.
+   * @returns {Object} 500 - Error message.
+   */
   erase: async (req, res) => {
     const { id } = req.params;
     try {
@@ -55,6 +107,17 @@ module.exports = {
       return res.status(500).json({ error: error });
     }
   },
+   /**
+   * Update dish by ID
+   * @route PUT /dishes/:id
+   * @desc Updates a dish by its ID in the database.
+   * @access Public
+   * @param {Object} req - Express request object.
+   * @param {Object} res - Express response object.
+   * @returns {Object} 200 - The updated dish object.
+   * @returns {Object} 404 - Object ID not found message.
+   * @returns {Object} 500 - Error message.
+   */
   update: async (req, res) => {
     try {
       const { id } = req.params;
