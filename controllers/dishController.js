@@ -55,4 +55,31 @@ module.exports = {
       return res.status(500).json({ error: error });
     }
   },
+  update: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { name, price, type, description, image } = req.body;
+
+      const query = await Dish.findById(id);
+
+      if (query) {
+        const filter = { _id: id };
+        const update = {
+          name: name,
+          price: price,
+          type: type,
+          description: description,
+          image: image,
+        };
+
+        const result = await Dish.findByIdAndUpdate(filter, update);
+
+        return res.status(200).json({ data: result });
+      } else {
+        return res.status(404).json({ msg: "El ObjectId no Existe" });
+      }
+    } catch (err) {
+      return res.status(500).json({ error: err.message });
+    }
+  },
 };

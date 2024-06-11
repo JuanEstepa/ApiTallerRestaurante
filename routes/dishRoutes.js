@@ -5,6 +5,7 @@ const {
   findById,
   erase,
   start,
+  update,
 } = require("../controllers/dishController");
 
 routes.get("/", start);
@@ -70,5 +71,7 @@ routes.post("/dishes", save);
  *         description: Dish not found
  */
 routes.delete("/dishes/:id", erase);
+
+routes.put("/dishes/:id", update);
 
 module.exports = routes;
