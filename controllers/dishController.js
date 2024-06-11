@@ -1,6 +1,17 @@
 const Dish = require("../models/dishModel");
 
 module.exports = {
+  start: async (req, res) => {
+    try {
+      return res
+        .status(200)
+        .json({
+          msg: "Conectado correctamente, /docs para ver los end points",
+        });
+    } catch (err) {
+      return res.status(500).json({ err: err });
+    }
+  },
   findAll: async (req, res) => {
     try {
       const result = await Dish.find({});

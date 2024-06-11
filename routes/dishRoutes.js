@@ -4,7 +4,10 @@ const {
   save,
   findById,
   erase,
+  start,
 } = require("../controllers/dishController");
+
+routes.get("/", start);
 
 /**
  * @swagger
