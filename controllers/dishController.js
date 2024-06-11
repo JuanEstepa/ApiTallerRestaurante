@@ -5,9 +5,7 @@ module.exports = {
     try {
       return res
         .status(200)
-        .json({
-          msg: "Conectado correctamente, /docs para ver los end points",
-        });
+        .send("Conectado correctamente, /docs para ver los end points");
     } catch (err) {
       return res.status(500).json({ err: err });
     }
